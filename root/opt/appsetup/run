@@ -1,0 +1,27 @@
+#!/bin/bash
+
+if [ ! -d $PYTHONAPP_LOCATION ]; then
+  echo "[Setup] Setting up app..."
+  echo "[Setup] ----------"
+  echo "[Setup] Installing python packages"
+  bash -c "${UBUNTU_PYTHON} -m pip install ${PYTHONAPP_PACKAGES}"
+
+  echo "[Setup] Creating directories"
+  mkdir ${PYTHONAPP_LOCATION}
+  cd ${PYTHONAPP_LOCATION}
+
+  echo "[Setup] Cloning git repo"
+  git clone ${PYTHONAPP_GIT_HTTPS}
+  cd ${PYTHONAPP_NAME}
+
+  echo "[Setup] Creating auth.py"
+  echo "token = '${PYTHONAPP_AUTHKEY}'" > auth.py
+else
+  echo "[Update] Updating git repo... "
+  cd ${PYTHONAPP_LOCATION}/${PYTHONAPP_NAME}
+  git pull
+fi
+
+echo "Starting app..."
+cd ${PYTHONAPP_LOCATION}/${PYTHONAPP_NAME}
+bash -c "$UBUNTU_PYTHON ${PYTHONAPP_FILE}"
