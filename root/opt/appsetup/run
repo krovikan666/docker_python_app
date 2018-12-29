@@ -4,7 +4,7 @@ if [[ ! -d $PYTHONAPP_LOCATION ]]; then
   echo "[Setup] Setting up app..."
   echo "[Setup] ----------"
   echo "[Setup] Installing python packages"
-  if [[$PYTHONAPP_MODE = "WSGI"]]; then
+  if [[ ${PYTHONAPP_MODE} = "WSGI" ]]; then
     bash -c "${UBUNTU_PYTHON} -m pip install waitress"
   fi
   bash -c "${UBUNTU_PYTHON} -m pip install ${PYTHONAPP_PACKAGES}"
@@ -28,9 +28,9 @@ fi
 echo "Starting app..."
 cd ${PYTHONAPP_LOCATION}/${PYTHONAPP_NAME}
 
-if [[$PYTHONAPP_MODE = "APP"]]; then
+if [[ ${PYTHONAPP_MODE} = "APP" ]]; then
   bash -c "$UBUNTU_PYTHON ${PYTHONAPP}"
-elif [[$PYTHONAPP_MODE = "WSGI"]]; then
+elif [[ ${PYTHONAPP_MODE} = "WSGI" ]]; then
   bash -c "waitress-serve --port=8000 ${PYTHONAPP}"
 else
   echo "[Error] unexpected app mode"
