@@ -5,6 +5,8 @@ inside the container. Once the git repo is loaded it will run the python app.
 
 ## Usage
 
+docker pull krovikan/python_app
+
 ```
 docker create \
   --name=TutorialBot \
@@ -13,7 +15,7 @@ docker create \
   -e PYTHONAPP_NAME=<App name> \
   -e PYTHONAPP_FILE=<App main> \
   -e PYTHONAPP_PACKAGES=<List of Python Packages> \
-  <image id>
+  krovikan/python_app
 ```
  
 ## Parameters
@@ -79,7 +81,7 @@ docker create \
   -e PYTHONAPP=bot.py \
   -e PYTHONAPP_AUTHKEY="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" \
   -e PYTHONAPP_PACKAGES="docker discord" \
-  bf9cf2c37887
+  krovikan/python_app
 ```  
 
 WSGI Mode:
@@ -92,5 +94,5 @@ docker create \
   -e PYTHONAPP="webapp:app" \
   -e PYTHONAPP_PACKAGES="docker falcon mako" \
   -p 8000:8000 \
-  bad0a6d6c0b0
+  krovikan/python_app
 ```
