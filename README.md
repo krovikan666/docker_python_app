@@ -8,6 +8,7 @@ inside the container. Once the git repo is loaded it will run the python app.
 ```
 docker create \
   --name=TutorialBot \
+  -e PYTHONAPP_MODE=<APP\WSGI>
   -e PYTHONAPP_GIT_HTTPS=<GIT repo> \
   -e PYTHONAPP_NAME=<App name> \
   -e PYTHONAPP_FILE=<App main> \
@@ -30,6 +31,14 @@ Sets the python package to use. default: python3.6
 
 Sets the python pip package to use, default: python3-pip
 
+-e PYTHONAPP_MODE
+
+Sets the app mode, APP runs a python file, WSGI mode runs a WSGI object within
+a python file. In WSGI mode the WSGI app will be served on port 8000.
+
+You can not change this from APP to WSGI after initial install, the WSGI server
+will not be installed.
+
 -e PYTHONAPP_GIT_HTTPS
 
 Sets the git repo to clone, no default
@@ -38,13 +47,15 @@ Sets the git repo to clone, no default
 
 Sets the location to store the pythonapp, default: /opt/pythonapp/
 
+-e PYTHONAPP
+
+Sets the python app to run, in APP mod this will be a full file name; 
+in WSGI mode this will be the file name (without extension) followed by the 
+WSGI app object, using the following format, file:app.  
+
 -e PYTHONAPP_NAME
 
 Sets the python app name, no default
-
--e PYTHONAPP_FILE
-
-Sets the python file to run, no default
 
 -e PYTHONAPP_AUTHKEY
 
@@ -61,9 +72,10 @@ A space separated list of python packages to install
 ```
 docker create \
   --name=TutorialBot \
+  -e PYTHONAPP_MODE=APP
   -e PYTHONAPP_GIT_HTTPS="https://github.com/krovikan666/TutorialBot.git" \
   -e PYTHONAPP_NAME=TutorialBot \
-  -e PYTHONAPP_FILE=bot.py \
+  -e PYTHONAPP=bot.py \
   -e PYTHONAPP_AUTHKEY="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" \
   -e PYTHONAPP_PACKAGES="docker discord" \
   bf9cf2c37887
