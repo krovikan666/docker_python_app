@@ -6,7 +6,7 @@ ENV \
   UBUNTU_REPOSITORY="ppa:jonathonf/python-3.6" \
   UBUNTU_PYTHON="python3.6" \
   UBUNTU_PIP="python3-pip"  \
-  PYTHONAPP_MODE ="APP" \
+  PYTHONAPP_MODE="APP" \
   PYTHONAPP_GIT_HTTPS="" \
   PYTHONAPP_LOCATION="/opt/pythonapp/" \
   PYTHONAPP="" \
