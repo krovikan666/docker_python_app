@@ -69,7 +69,8 @@ A space separated list of python packages to install
 
 ##  Example
 
-```
+App Mode:
+```bash
 docker create \
   --name=TutorialBot \
   -e PYTHONAPP_MODE=APP
@@ -80,3 +81,16 @@ docker create \
   -e PYTHONAPP_PACKAGES="docker discord" \
   bf9cf2c37887
 ```  
+
+WSGI Mode:
+```bash
+docker create \
+  --name=FalconDemo \
+  -e PYTHONAPP_MODE=WSGI \
+  -e PYTHONAPP_GIT_HTTPS="https://github.com/krovikan666/FalconDemo.git" \
+  -e PYTHONAPP_NAME=FalconDemo \
+  -e PYTHONAPP="webapp:app" \
+  -e PYTHONAPP_PACKAGES="docker falcon mako" \
+  -p 8000:8000 \
+  bad0a6d6c0b0
+```
