@@ -30,4 +30,5 @@ RUN apt-get install -y git
 COPY root/ /
 
 # Setting entry point script
+RUN ["chmod", "+x", "/opt/appsetup/run"]
 ENTRYPOINT ["/opt/appsetup/run"]
